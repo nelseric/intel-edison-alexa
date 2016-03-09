@@ -3,7 +3,9 @@
 import os
 import random
 import time
-import RPi.GPIO as GPIO
+#Intel MRAA library
+import mraa
+#import RPi.GPIO as GPIO
 import alsaaudio
 import wave
 import random

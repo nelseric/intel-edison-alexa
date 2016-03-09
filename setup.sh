@@ -8,6 +8,22 @@ cd /etc/rc5.d
 ln -s ../init.d/alexa S99alexa
 touch /var/log/alexa.log
 
+#Install MRAA library from Intel GitHub
+echo "Installing dependencies"
+apt-get install git
+apt-get install cmake
+apt-get install python-dev
+apt-get install swig
+
+echo "Installing MRAA"
+git clone https://github.com/intel-iot-devkit/mraa.git
+mkdir mraa/build && cd $_
+cmake .. -DBUILDSWIGNODE=OFF
+make
+make install
+cd
+
+
 echo "Enter your ProductID:"
 read productid
 echo ProductID = \"$productid\" >> creds.py
