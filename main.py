@@ -15,6 +15,10 @@ import json
 import re
 from memcache import Client
 
+# Button 	= 2
+# LED 1 	= 3
+# LED 2		= 4
+
 #Settings
 button = 18 #GPIO Pin with button connected
 lights = [24, 25] # GPIO Pins with LED's conneted
