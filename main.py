@@ -5,7 +5,6 @@ import random
 import time
 #Intel MRAA library
 import mraa
-#import RPi.GPIO as GPIO
 import alsaaudio
 import wave
 import random
@@ -118,7 +117,6 @@ def alexa():
 def start():
 	last = button.read()
 	while True:
-		#val = GPIO.input(button)
 		val = button.read()
 		if val != last:
 			last = val
@@ -147,10 +145,6 @@ def start():
 	
 
 if __name__ == "__main__":
-	#GPIO.setwarnings(False)
-	#GPIO.cleanup()
-	#GPIO.setmode(GPIO.BCM)
-	#GPIO.setup(button, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 	##MRAA output
 	led_status.dir(mraa.DIR_OUT)
 	led_record.dir(mraa.DIR_OUT)
@@ -158,9 +152,6 @@ if __name__ == "__main__":
 	led_record.write(0)
 	#MRAA input
 	button.dir(DIR_IN)
-	#old
-	#GPIO.setup(lights, GPIO.OUT)
-	#GPIO.output(lights, GPIO.LOW)
 	while internet_on() == False:
 		print "."
 	token = gettoken()
