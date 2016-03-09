@@ -18,11 +18,13 @@ from memcache import Client
 # Button 	= 2
 # LED 1 	= 3
 # LED 2		= 4
-
 #Settings
-button = 18 #GPIO Pin with button connected
-lights = [24, 25] # GPIO Pins with LED's conneted
+button = mraa.Gpio(2) #GPIO Pin with button connected
+led_record = mraa.Gpio(3) # LED for recording in progress (old 25)
+led_status = mraa.Gpio(4) # LED for Alexa status (old 24)
+
 device = "plughw:1" # Name of your microphone/soundcard in arecord -L
+
 
 #Setup
 recorded = False
@@ -114,9 +116,10 @@ def alexa():
 
 
 def start():
-	last = GPIO.input(button)
+	last = button.read()
 	while True:
-		val = GPIO.input(button)
+		#val = GPIO.input(button)
+		val = button.read()
 		if val != last:
 			last = val
 			if val == 1 and recorded == True:
@@ -144,12 +147,20 @@ def start():
 	
 
 if __name__ == "__main__":
-	GPIO.setwarnings(False)
-	GPIO.cleanup()
-	GPIO.setmode(GPIO.BCM)
-	GPIO.setup(button, GPIO.IN, pull_up_down=GPIO.PUD_UP)
-	GPIO.setup(lights, GPIO.OUT)
-	GPIO.output(lights, GPIO.LOW)
+	#GPIO.setwarnings(False)
+	#GPIO.cleanup()
+	#GPIO.setmode(GPIO.BCM)
+	#GPIO.setup(button, GPIO.IN, pull_up_down=GPIO.PUD_UP)
+	##MRAA output
+	led_status.dir(mraa.DIR_OUT)
+	led_record.dir(mraa.DIR_OUT)
+	led_status.write(0)
+	led_record.write(0)
+	#MRAA input
+	button.dir(DIR_IN)
+	#old
+	#GPIO.setup(lights, GPIO.OUT)
+	#GPIO.output(lights, GPIO.LOW)
 	while internet_on() == False:
 		print "."
 	token = gettoken()
