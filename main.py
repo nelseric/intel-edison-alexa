@@ -61,7 +61,7 @@ def gettoken():
 		
 
 def alexa():
-	GPIO.output(24, GPIO.HIGH)
+	led_status.write(1)
 	url = 'https://access-alexa-na.amazon.com/v1/avs/speechrecognizer/recognize'
 	headers = {'Authorization' : 'Bearer %s' % gettoken()}
 	d = {
@@ -100,16 +100,18 @@ def alexa():
 				audio = d.split('\r\n\r\n')[1].rstrip('--')
 		with open(path+"response.mp3", 'wb') as f:
 			f.write(audio)
-		GPIO.output(25, GPIO.LOW)
+		led_record.write(0)
 		os.system('mpg123 -q {}1sec.mp3 {}response.mp3'.format(path, path))
-		GPIO.output(24, GPIO.LOW)
+		led_status.write(0)
 	else:
-		GPIO.output(lights, GPIO.LOW)
+		led_record.write(0)
+		led_status.write(0)
 		for x in range(0, 3):
 			time.sleep(.2)
-			GPIO.output(25, GPIO.HIGH)
+			led_record.write(1)
 			time.sleep(.2)
-			GPIO.output(lights, GPIO.LOW)
+			led_record.write(0)
+			led_status.write(0)
 		
 
 
@@ -127,7 +129,7 @@ def start():
 				inp = None
 				alexa()
 			elif val == 0:
-				GPIO.output(25, GPIO.HIGH)
+				led_record.write(1)
 				inp = alsaaudio.PCM(alsaaudio.PCM_CAPTURE, alsaaudio.PCM_NORMAL, device)
 				inp.setchannels(1)
 				inp.setrate(16000)
@@ -158,7 +160,8 @@ if __name__ == "__main__":
 	os.system('mpg123 -q {}1sec.mp3 {}hello.mp3'.format(path, path))
 	for x in range(0, 3):
 		time.sleep(.1)
-		GPIO.output(24, GPIO.HIGH)
+		led_status.write(1)
 		time.sleep(.1)
-		GPIO.output(24, GPIO.LOW)
+		led_status.write(0)
 	start()
+	
