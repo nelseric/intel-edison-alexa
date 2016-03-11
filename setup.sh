@@ -9,10 +9,7 @@ ln -s ../init.d/alexa S99alexa
 touch /var/log/alexa.log
 
 #Install MRAA library from Intel GitHub
-echo "Installing dependencies"
-apt-get install git
-apt-get install cmake
-apt-get install python-dev
+echo "Installing other dependencies"
 apt-get install swig
 
 echo "Installing MRAA"
@@ -22,7 +19,6 @@ cmake .. -DBUILDSWIGNODE=OFF
 make
 make install
 cd
-
 
 echo "Enter your ProductID:"
 read productid
