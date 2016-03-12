@@ -19,6 +19,7 @@ cmake .. -DBUILDSWIGNODE=OFF
 make
 make install
 cd
+echo "MRAA install DONE"
 
 echo "Enter your ProductID:"
 read productid
