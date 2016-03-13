@@ -24,14 +24,11 @@ led_status = mraa.Gpio(4) # LED for Alexa status (old 24)
 
 device = "plughw:1" # Name of your microphone/soundcard in arecord -L
 
-
 #Setup
 recorded = False
 servers = ["127.0.0.1:11211"]
 mc = Client(servers, debug=1)
 path = os.path.realpath(__file__).rstrip(os.path.basename(__file__))
-
-
 
 def internet_on():
     print "Checking Internet Connection"
@@ -113,9 +110,6 @@ def alexa():
 			led_record.write(0)
 			led_status.write(0)
 		
-
-
-
 def start():
 	last = button.read()
 	while True:
@@ -145,7 +139,6 @@ def start():
 			if l:
 				audio += data
 	
-
 if __name__ == "__main__":
 	##MRAA output
 	led_status.dir(mraa.DIR_OUT)

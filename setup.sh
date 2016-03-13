@@ -9,16 +9,16 @@ ln -s ../init.d/alexa S99alexa
 touch /var/log/alexa.log
 
 #Install MRAA library from Intel GitHub
-echo "Installing other dependencies"
-apt-get install swig
+#echo "Installing other dependencies"
+#apt-get install swig
 
 echo "Installing MRAA"
-git clone https://github.com/intel-iot-devkit/mraa.git
-mkdir mraa/build && cd $_
-cmake .. -DBUILDSWIGNODE=OFF
-make
-make install
-cd
+#git clone https://github.com/intel-iot-devkit/mraa.git
+#mkdir mraa/build && cd $_
+#cmake .. -DBUILDSWIGNODE=OFF
+#make
+#make install
+#cd
 echo "MRAA install DONE"
 
 echo "Enter your ProductID:"
