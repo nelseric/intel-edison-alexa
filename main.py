@@ -146,7 +146,7 @@ if __name__ == "__main__":
 	led_status.write(0)
 	led_record.write(0)
 	#MRAA input
-	button.dir(DIR_IN)
+	button.dir(mraa.DIR_IN)
 	while internet_on() == False:
 		print "."
 	token = gettoken()
