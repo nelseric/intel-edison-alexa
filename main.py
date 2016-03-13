@@ -134,7 +134,7 @@ def start():
 				if l:
 					audio += data
 				recorded = True
-		elif val == 0:
+		elif val == 1:
 			l, data = inp.read()
 			if l:
 				audio += data
