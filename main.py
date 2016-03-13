@@ -116,13 +116,13 @@ def start():
 		val = button.read()
 		if val != last:
 			last = val
-			if val == 1 and recorded == True:
+			if val == 0 and recorded == True:
 				rf = open(path+'recording.wav', 'w') 
 				rf.write(audio)
 				rf.close()
 				inp = None
 				alexa()
-			elif val == 0:
+			elif val == 1:
 				led_record.write(1)
 				inp = alsaaudio.PCM(alsaaudio.PCM_CAPTURE, alsaaudio.PCM_NORMAL, device)
 				inp.setchannels(1)
