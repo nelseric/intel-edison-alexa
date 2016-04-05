@@ -1,8 +1,17 @@
 # Amazon Alexa for Intel Edison
 
-This project is a port from the AlexaPi for the Intel Edison.
+### About
+
+This project is based on the Sam Machin project, the Alexa Pi for the Raspberry Pi, for the Intel Edison.
+The idea was to port the original project to the Edison and use the MRAA library from Intel.
 
 Based on https://github.com/sammachin/AlexaPi
+
+### Usage
+
+To build this project you'll need a USB sound card. The Intel Edison doesn't have integrated sound card.
+
+### Links
 
 http://www.emutexlabs.com/ubilinux
 
