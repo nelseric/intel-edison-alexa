@@ -4,8 +4,7 @@ apt-get update
 apt-get install  libasound2-dev memcached python-pip mpg123 python-alsaaudio
 pip install -r requirements.txt
 cp initd_alexa.sh /etc/init.d/alexa
-cd /etc/rc5.d
-ln -s ../init.d/alexa S99alexa
+ln -s /etc/init.d/alexa /etc/rc5.d/S99alexa
 touch /var/log/alexa.log
 
 #Install MRAA library from Intel GitHub
